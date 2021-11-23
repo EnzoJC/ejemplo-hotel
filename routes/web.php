@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 Route::get('/hotels', [HotelController::class, 'index']);
-Route::get('/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name('auth0-callback');
-Route::get('/login', 'Auth\Auth0IndexController@login')->name('login');
-Route::get('/logout', 'Auth\Auth0IndexController@logout')->name('logout')->middleware('auth');
+Route::get('/auth0/callback', [\App\Http\Controllers\Auth\Auth0IndexController::class, 'callback'])->name('auth0-callback');
+Route::get('/login', [\App\Http\Controllers\Auth\Auth0IndexController::class, 'login'])->name('login');
+Route::get('/logout', [\App\Http\Controllers\Auth\Auth0IndexController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::group(['prefix' => 'dashboard'], function() {
     Route::view('/', 'dashboard/dashboard');
     Route::get('reservations/create/{id}', [ReservationController::class, 'create']);
-    Route::resource('reservations', 'ReservationController')->except('create');
+    Route::resource('reservations', [ReservationController::class])->except('create');
 });

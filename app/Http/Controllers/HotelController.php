@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Reservation;
+use App\Models\Hotel;
+use App\Models\Room;
 
 class HotelController extends Controller
 {
