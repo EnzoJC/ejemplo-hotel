@@ -62,7 +62,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'auth0',
-            'model' => App\Models\User::class,
+//            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
